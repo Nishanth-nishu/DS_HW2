@@ -28,7 +28,7 @@
 # every process; C is 8-byte and ~18 MB on root. --mem-per-cpu=4G is ample.
 # ---------------------------------------------------------------------------
 
-PROJECT_DIR="$HOME/Q1"        # <-- EDIT THIS
+PROJECT_DIR="/home/cs3401.58/DS_HW2/HW2/Q1"
 
 module load hpcx-2.7.0/hpcx-ompi
 
