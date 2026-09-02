@@ -1,0 +1,24 @@
+existing results preserved as benchmark/results_20260903_033100.csv
+  small 256x256x256  P=1 done
+  small 256x256x256  P=2 done
+  small 256x256x256  P=4 done
+  small 256x256x256  P=8 done
+  medium 512x512x512  P=1 done
+  medium 512x512x512  P=2 done
+  medium 512x512x512  P=4 done
+  medium 512x512x512  P=8 done
+  large 1024x1024x1024  P=1 done
+  large 1024x1024x1024  P=2 done
+  large 1024x1024x1024  P=4 done
+  large 1024x1024x1024  P=8 done
+  skew_wide 128x1024x1024  P=1 done
+  skew_wide 128x1024x1024  P=2 done
+  skew_wide 128x1024x1024  P=4 done
+  skew_wide 128x1024x1024  P=8 done
+  uneven 1000x999x997  P=1 done
+  uneven 1000x999x997  P=2 done
+  uneven 1000x999x997  P=4 done
+  uneven 1000x999x997  P=8 done
+
+results written to /home/cs3401.58/DS_HW2/Q1/benchmark/results.csv
+now run:  ./tools/analyze

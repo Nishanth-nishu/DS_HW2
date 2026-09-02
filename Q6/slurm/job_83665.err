@@ -1,0 +1,32 @@
+existing results preserved as benchmark/results_20260903_033055.csv
+  small P=1 done
+  small P=2 done
+  small P=4 done
+  small P=8 done
+  medium P=1 done
+  medium P=2 done
+  medium P=4 done
+  medium P=8 done
+  large P=1 done
+  large P=2 done
+  large P=4 done
+  large P=8 done
+  verylarge P=1 done
+  verylarge P=2 done
+  verylarge P=4 done
+  verylarge P=8 done
+  path P=1 done
+  path P=2 done
+  path P=4 done
+  path P=8 done
+  shuffled P=1 done
+  shuffled P=2 done
+  shuffled P=4 done
+  shuffled P=8 done
+  chain P=1 done
+  chain P=2 done
+  chain P=4 done
+  chain P=8 done
+
+results written to /home/cs3401.58/DS_HW2/Q6/benchmark/results.csv
+now run:  ./tools/analyze

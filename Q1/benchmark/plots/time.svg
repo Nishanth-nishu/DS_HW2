@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="460" viewBox="0 0 760 460" font-family="Helvetica,Arial,sans-serif">
+<rect width="760" height="460" fill="#ffffff"/>
+<text x="380" y="28" text-anchor="middle" font-size="17" font-weight="600">Q1 - Execution time vs processes</text>
+<line x1="78" y1="398" x2="550" y2="398" stroke="#e2e2e2" stroke-width="1"/>
+<text x="69" y="402" text-anchor="end" font-size="11" fill="#444">8.1e-03</text>
+<line x1="78" y1="328.8" x2="550" y2="328.8" stroke="#e2e2e2" stroke-width="1"/>
+<text x="69" y="332.8" text-anchor="end" font-size="11" fill="#444">2.0e-02</text>
+<line x1="78" y1="259.6" x2="550" y2="259.6" stroke="#e2e2e2" stroke-width="1"/>
+<text x="69" y="263.6" text-anchor="end" font-size="11" fill="#444">5.0e-02</text>
+<line x1="78" y1="190.4" x2="550" y2="190.4" stroke="#e2e2e2" stroke-width="1"/>
+<text x="69" y="194.4" text-anchor="end" font-size="11" fill="#444">1.2e-01</text>
+<line x1="78" y1="121.2" x2="550" y2="121.2" stroke="#e2e2e2" stroke-width="1"/>
+<text x="69" y="125.2" text-anchor="end" font-size="11" fill="#444">3.1e-01</text>
+<line x1="78" y1="52" x2="550" y2="52" stroke="#e2e2e2" stroke-width="1"/>
+<text x="69" y="56" text-anchor="end" font-size="11" fill="#444">7.6e-01</text>
+<line x1="78" y1="52" x2="78" y2="398" stroke="#f0f0f0" stroke-width="1"/>
+<text x="78" y="418" text-anchor="middle" font-size="12" fill="#444">1</text>
+<line x1="145.429" y1="52" x2="145.429" y2="398" stroke="#f0f0f0" stroke-width="1"/>
+<text x="145.429" y="418" text-anchor="middle" font-size="12" fill="#444">2</text>
+<line x1="280.286" y1="52" x2="280.286" y2="398" stroke="#f0f0f0" stroke-width="1"/>
+<text x="280.286" y="418" text-anchor="middle" font-size="12" fill="#444">4</text>
+<line x1="550" y1="52" x2="550" y2="398" stroke="#f0f0f0" stroke-width="1"/>
+<text x="550" y="418" text-anchor="middle" font-size="12" fill="#444">8</text>
+<line x1="78" y1="52" x2="78" y2="398" stroke="#333" stroke-width="1.4"/>
+<line x1="78" y1="398" x2="550" y2="398" stroke="#333" stroke-width="1.4"/>
+<text x="314" y="444" text-anchor="middle" font-size="13">Number of MPI processes (P)</text>
+<text x="18" y="225" text-anchor="middle" font-size="13" transform="rotate(-90 18 225)">t_algo (s, log scale)</text>
+<polyline fill="none" stroke="#2f6fb5" stroke-width="2.2" points="78,377.924 145.429,372.483 280.286,398 550,280.514 "/>
+<circle cx="78" cy="377.924" r="3.4" fill="#2f6fb5"/>
+<circle cx="145.429" cy="372.483" r="3.4" fill="#2f6fb5"/>
+<circle cx="280.286" cy="398" r="3.4" fill="#2f6fb5"/>
+<circle cx="550" cy="280.514" r="3.4" fill="#2f6fb5"/>
+<polyline fill="none" stroke="#c1492e" stroke-width="2.2" points="78,226.319 145.429,224.658 280.286,266.091 550,210.486 "/>
+<circle cx="78" cy="226.319" r="3.4" fill="#c1492e"/>
+<circle cx="145.429" cy="224.658" r="3.4" fill="#c1492e"/>
+<circle cx="280.286" cy="266.091" r="3.4" fill="#c1492e"/>
+<circle cx="550" cy="210.486" r="3.4" fill="#c1492e"/>
+<polyline fill="none" stroke="#3f8f56" stroke-width="2.2" points="78,71.5849 145.429,121.464 280.286,119.651 550,131.065 "/>
+<circle cx="78" cy="71.5849" r="3.4" fill="#3f8f56"/>
+<circle cx="145.429" cy="121.464" r="3.4" fill="#3f8f56"/>
+<circle cx="280.286" cy="119.651" r="3.4" fill="#3f8f56"/>
+<circle cx="550" cy="131.065" r="3.4" fill="#3f8f56"/>
+<polyline fill="none" stroke="#8a5fb0" stroke-width="2.2" points="78,224.736 145.429,267.73 280.286,255.473 550,200.497 "/>
+<circle cx="78" cy="224.736" r="3.4" fill="#8a5fb0"/>
+<circle cx="145.429" cy="267.73" r="3.4" fill="#8a5fb0"/>
+<circle cx="280.286" cy="255.473" r="3.4" fill="#8a5fb0"/>
+<circle cx="550" cy="200.497" r="3.4" fill="#8a5fb0"/>
+<polyline fill="none" stroke="#c98a1e" stroke-width="2.2" points="78,77.4684 145.429,126.754 280.286,125.84 550,136.035 "/>
+<circle cx="78" cy="77.4684" r="3.4" fill="#c98a1e"/>
+<circle cx="145.429" cy="126.754" r="3.4" fill="#c98a1e"/>
+<circle cx="280.286" cy="125.84" r="3.4" fill="#c98a1e"/>
+<circle cx="550" cy="136.035" r="3.4" fill="#c98a1e"/>
+<line x1="566" y1="58" x2="590" y2="58" stroke="#2f6fb5" stroke-width="2.6"/>
+<text x="596" y="62" font-size="11" fill="#222">small (256x256x256)</text>
+<line x1="566" y1="77" x2="590" y2="77" stroke="#c1492e" stroke-width="2.6"/>
+<text x="596" y="81" font-size="11" fill="#222">medium (512x512x512)</text>
+<line x1="566" y1="96" x2="590" y2="96" stroke="#3f8f56" stroke-width="2.6"/>
+<text x="596" y="100" font-size="11" fill="#222">large (1024x1024x1024)</text>
+<line x1="566" y1="115" x2="590" y2="115" stroke="#8a5fb0" stroke-width="2.6"/>
+<text x="596" y="119" font-size="11" fill="#222">skew_wide (128x1024x1024)</text>
+<line x1="566" y1="134" x2="590" y2="134" stroke="#c98a1e" stroke-width="2.6"/>
+<text x="596" y="138" font-size="11" fill="#222">uneven (1000x999x997)</text>
+</svg>

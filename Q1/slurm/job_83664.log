@@ -1,0 +1,150 @@
+==========================================
+SLURM_JOB_ID = 83664
+SLURM_NODELIST = node[06-07]
+SLURM_JOB_GPUS = 
+==========================================
+=========================================
+SLURM Job ID   : 83664
+Nodes          : 2
+Total tasks    : 8
+Node list      : node[06-07]
+Started        : Thu Sep  3 03:30:41 IST 2026
+=========================================
+
+--- Compiling ---
+make: Nothing to be done for 'all'.
+Build OK
+
+--- Correctness suite (P = 1 2 4 8) ---
+Q1 correctness suite  (process counts: 1 2 4 8)
+---------------------------------------------------------------
+  [PDF worked examples -- known expected output]
+  PDF Example 1 (3x2 * 2x3, even split)      PASS
+  PDF Example 2 (4x2 * 2x2, uneven split)    PASS
+  [file-based cases -- MPI vs sequential]
+  small square 2x2 * 2x2                     PASS
+  rectangular 2x3 * 3x4                      PASS
+  m=1 single row                             PASS
+  n=1 outer product                          PASS
+  p=1 single column                          PASS
+  [generated cases -- MPI vs sequential]
+  m divisible by P    (m=8)                  PASS
+  m NOT divisible by P (m=10)                PASS
+  m NOT divisible by P (m=13)                PASS
+  m=1 (single row)                           PASS
+  n=1 (rank-1 outer product)                 PASS
+  p=1 (single column)                        PASS
+  1x1x1                                      PASS
+  m < P (m=3, idle ranks at P=8)             PASS
+  m < P (m=5)                                PASS
+  tall skewed  m >> n (200x5)                PASS
+  wide skewed  n >> m (5x200)                PASS
+  wide output  p >> m (6x6x200)              PASS
+  square 64                                  PASS
+  larger 200x150x120                         PASS
+  prime dims 101x97x89                       PASS
+  [input validation]
+  rejects truncated input                    PASS
+  rejects overlong input                     PASS
+  rejects missing header                     PASS
+---------------------------------------------------------------
+  passed: 25   failed: 0
+
+--- Benchmark ---
+
+--- Analysis ---
+# Q1 Benchmark Analysis - Row-Row Matrix Multiplication
+
+Source: `benchmark/results.csv`  |  process counts: 1 2 4 8  |  statistic: median over trials
+
+`t_algo` = `t_compute` + `t_comm`, where `t_comm` = `t_dist` (Bcast dims + Scatterv A + Bcast B) + `t_gather` (Gatherv C).
+
+### Matrix sizes
+
+| Label | m x n x p |
+|:--|:-:|
+| small | 256x256x256 |
+| medium | 512x512x512 |
+| large | 1024x1024x1024 |
+| skew_wide | 128x1024x1024 |
+| uneven | 1000x999x997 |
+
+### Runtime - median `t_algo` (seconds)
+
+| Input size | P=1 | P=2 | P=4 | P=8 |
+|:--|:-:|:-:|:-:|:-:|
+| small | 0.0105 | 0.0113 | 0.0081 | 0.0378 |
+| medium | 0.0771 | 0.0788 | 0.0457 | 0.0950 |
+| large | 0.5902 | 0.3063 | 0.3137 | 0.2699 |
+| skew_wide | 0.0787 | 0.0447 | 0.0526 | 0.1083 |
+| uneven | 0.5462 | 0.2857 | 0.2891 | 0.2529 |
+
+### Speed-up  S(P) = T1 / TP
+
+| Input size | P=1 | P=2 | P=4 | P=8 |
+|:--|:-:|:-:|:-:|:-:|
+| small | 1.00 | 0.93 | 1.30 | 0.28 |
+| medium | 1.00 | 0.98 | 1.69 | 0.81 |
+| large | 1.00 | 1.93 | 1.88 | 2.19 |
+| skew_wide | 1.00 | 1.76 | 1.50 | 0.73 |
+| uneven | 1.00 | 1.91 | 1.89 | 2.16 |
+
+### Efficiency  E(P) = S(P) / P
+
+| Input size | P=1 | P=2 | P=4 | P=8 |
+|:--|:-:|:-:|:-:|:-:|
+| small | 100.0% | 46.5% | 32.6% | 3.5% |
+| medium | 100.0% | 48.9% | 42.2% | 10.2% |
+| large | 100.0% | 96.4% | 47.0% | 27.3% |
+| skew_wide | 100.0% | 88.0% | 37.5% | 9.1% |
+| uneven | 100.0% | 95.6% | 47.2% | 27.0% |
+
+### Communication share - `t_comm` as % of `t_algo`
+
+Rising with P is expected: the Bcast of B moves n*p elements to every process regardless of P, while the computation per process falls as 1/P.
+
+| Input size | P=1 | P=2 | P=4 | P=8 |
+|:--|:-:|:-:|:-:|:-:|
+| small | 8.3% | 17.3% | 41.7% | 93.7% |
+| medium | 4.7% | 7.0% | 19.8% | 80.4% |
+| large | 2.1% | 5.2% | 7.6% | 45.6% |
+| skew_wide | 7.5% | 18.0% | 30.2% | 83.0% |
+| uneven | 2.1% | 5.2% | 7.9% | 47.2% |
+
+### Phase breakdown (seconds, median)
+
+| Size | P | t_dist | t_compute | t_gather | t_algo |
+|:--|:-:|:-:|:-:|:-:|:-:|
+| small | 1 | 0.0007 | 0.0096 | 0.0002 | 0.0105 |
+| small | 2 | 0.0015 | 0.0093 | 0.0004 | 0.0113 |
+| small | 4 | 0.0031 | 0.0047 | 0.0003 | 0.0081 |
+| small | 8 | 0.0331 | 0.0024 | 0.0024 | 0.0378 |
+| medium | 1 | 0.0028 | 0.0735 | 0.0009 | 0.0771 |
+| medium | 2 | 0.0043 | 0.0733 | 0.0012 | 0.0788 |
+| medium | 4 | 0.0068 | 0.0367 | 0.0023 | 0.0457 |
+| medium | 8 | 0.0653 | 0.0186 | 0.0110 | 0.0950 |
+| large | 1 | 0.0095 | 0.5780 | 0.0027 | 0.5902 |
+| large | 2 | 0.0115 | 0.2903 | 0.0044 | 0.3063 |
+| large | 4 | 0.0187 | 0.2900 | 0.0050 | 0.3137 |
+| large | 8 | 0.0824 | 0.1469 | 0.0407 | 0.2699 |
+| skew_wide | 1 | 0.0055 | 0.0728 | 0.0005 | 0.0787 |
+| skew_wide | 2 | 0.0071 | 0.0367 | 0.0009 | 0.0447 |
+| skew_wide | 4 | 0.0142 | 0.0367 | 0.0017 | 0.0526 |
+| skew_wide | 8 | 0.0852 | 0.0185 | 0.0047 | 0.1083 |
+| uneven | 1 | 0.0093 | 0.5345 | 0.0024 | 0.5462 |
+| uneven | 2 | 0.0110 | 0.2707 | 0.0040 | 0.2857 |
+| uneven | 4 | 0.0182 | 0.2664 | 0.0045 | 0.2891 |
+| uneven | 8 | 0.0810 | 0.1334 | 0.0384 | 0.2529 |
+
+### Plots written
+
+- `benchmark/plots/time.svg`
+- `benchmark/plots/speedup.svg`
+- `benchmark/plots/efficiency.svg`
+- `benchmark/plots/comm_fraction.svg`
+
+=========================================
+Finished       : Thu Sep  3 03:31:40 IST 2026
+Results        : benchmark/results.csv
+Tables/plots   : report/benchmark_results.md , benchmark/plots/
+=========================================
