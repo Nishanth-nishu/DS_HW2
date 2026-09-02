@@ -25,7 +25,7 @@
 # NOTE: edit PROJECT_DIR below to your own path before submitting.
 # ---------------------------------------------------------------------------
 
-PROJECT_DIR="$HOME/Q6"        # <-- EDIT THIS
+PROJECT_DIR="$HOME/DS_HW2/Q6"
 
 module load hpcx-2.7.0/hpcx-ompi
 

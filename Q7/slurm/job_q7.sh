@@ -28,7 +28,7 @@
 # Memory note: root holds the whole log before scattering. At 10,000,000
 # records x 40 bytes that is ~400 MB on rank 0; --mem-per-cpu=4G covers it.
 
-PROJECT_DIR="$HOME/Q7"        # <-- EDIT THIS
+PROJECT_DIR="$HOME/DS_HW2/Q7"
 
 module load hpcx-2.7.0/hpcx-ompi
 
