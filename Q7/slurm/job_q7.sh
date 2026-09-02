@@ -32,6 +32,11 @@ PROJECT_DIR="$HOME/DS_HW2/Q7"
 
 module load hpcx-2.7.0/hpcx-ompi
 
+# This cluster's mpirun miscounts available slots/cpu-bindings once more than
+# one rank lands on a node (fails at P>=4 with a core-binding error); disabling
+# process binding avoids it and does not affect correctness.
+export MPIRUN_FLAGS="--bind-to none"
+
 cd "$PROJECT_DIR" || { echo "PROJECT_DIR not found: $PROJECT_DIR"; exit 1; }
 
 echo "========================================="
