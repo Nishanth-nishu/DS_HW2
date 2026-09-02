@@ -1,11 +1,12 @@
 # Distributed Systems — Home Work 2
 
-MPI implementations for the two assigned questions, each self-contained.
+MPI implementations for the assigned questions, each self-contained.
 
 ```
 HW2/
 ├── Q1/    Distributed Matrix Multiplication — Row-Row Method   (Section 1)
-└── Q6/    Connected Components of a Large Graph                (Section 2)
+├── Q6/    Connected Components of a Large Graph                (Section 2)
+└── Q7/    Large-Scale Server Log Analytics                     (Section 3)
 ```
 
 Each directory has the same layout and its own full `README.md`:
@@ -30,7 +31,7 @@ All programs and tools are C++, built by `make`. Orchestration stays in shell.
 |---|---|---|
 | `src/sequential`, `src/*_mpi` | C++ | the implementations |
 | `tools/analyze` | C++ | Markdown tables + SVG charts from `results.csv` |
-| `tools/gen_graph` (Q6), `tools/gen_matrix` (Q1) | C++ | reproducible seeded input generation |
+| `tools/gen_graph` (Q6), `tools/gen_matrix` (Q1), `tools/gen_log` (Q7) | C++ | reproducible seeded input generation |
 | `tests/run_tests.sh` | shell | correctness suite: MPI vs sequential at P = 1, 2, 4, 8 |
 | `benchmark/run_bench.sh` | shell | timing sweep, writes `benchmark/results.csv` |
 | `slurm/job_*.sh` | shell | cluster submission |
@@ -63,6 +64,7 @@ Run the tools from the question's project root; they use relative paths.
 # edit PROJECT_DIR at the top of the job script first
 sbatch Q1/slurm/job_q1.sh
 sbatch Q6/slurm/job_q6.sh
+sbatch Q7/slurm/job_q7.sh
 
 squeue -u $USER                     # status
 scontrol show job <JOB_ID>          # details
@@ -76,17 +78,22 @@ is what makes the speed-up figures comparable.
 
 ## Current status
 
-| | Q1 (Row-Row matmul) | Q6 (Connected components) |
-|---|---|---|
-| Sequential reference | done | done |
-| MPI implementation | done | done |
-| Correctness suite | 25 cases, all pass at P=1,2,4,8 | 17 cases, all pass at P=1,2,4,8 |
-| Matches PDF worked examples | both examples, exactly | sample, exactly |
-| Benchmark harness | done | done |
-| SLURM script | done | done |
-| Tooling | C++ programs + shell orchestration | C++ programs + shell orchestration |
-| README | done | done |
-| Report | **template only — needs your measurements** | **template only — needs your measurements** |
+| | Q1 (Row-Row matmul) | Q6 (Connected components) | Q7 (Log analytics) |
+|---|---|---|---|
+| Sequential reference | done | done | done |
+| MPI implementation | done | done | done |
+| Correctness suite | 25 cases, all pass | 17 cases, all pass | 20 cases, all pass |
+| Verified against | both PDF examples, exactly | PDF sample, exactly | hand-computed fixture |
+| Benchmark harness | done | done | done |
+| SLURM script | done | done | done |
+| Tooling | C++ + shell orchestration | C++ + shell orchestration | C++ + shell orchestration |
+| README | done | done | done |
+| Report | **template — needs your numbers** | **template — needs your numbers** | **template — needs your numbers** |
+
+**Q7 note:** the PDF supplies no sample data for Q7 and never defines `S` in the
+`N K S` header. The expected output in `Q7/tests/small.expected` was computed by
+hand; `S` is parsed but not relied upon. See `Q7/README.md` §2 for the full list
+of points the PDF leaves open.
 
 ## No benchmark numbers are included
 
